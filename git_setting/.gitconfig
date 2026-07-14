@@ -1,0 +1,11 @@
+[safe]
+	directory = /home/hedaz/workspace/project/nbv
+[user]
+	email = bill.b750121@gmail.com
+	name = Hunter Huang
+[commit]
+	template = /home/hedaz/.gitmessage
+[core]
+	editor = vi
+[init]
+	defaultBranch = trunk
