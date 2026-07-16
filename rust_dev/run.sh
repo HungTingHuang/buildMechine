@@ -1,0 +1,28 @@
+#!/bin/sh
+
+build_image() {
+    docker build \
+        --no-cache --progress plain \
+        -t hedaz:rust_dev "$PWD"
+}
+
+run() {
+    docker run -it \
+        -v "$HOME"\/project:"$HOME"\/project \
+        -w "$HOME"\/project \
+        hedaz:rust_dev
+}
+
+help() 
+{
+    echo "dsd"
+}
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --help)     help; exit 0 ;;
+        --build)    build_image; exit 0;;
+        --run)      run; exit 0 ;;
+        *)          echo "Unknown option: $1"; exit -22 ;;
+    esac
+done
