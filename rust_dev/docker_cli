@@ -8,14 +8,14 @@ build_image() {
 
 run() {
     docker run -it \
-        -v "$HOME"\/project:"$HOME"\/project \
-        -w "$HOME"\/project \
+        -v "$HOME"/work:"$HOME"/work \
+        -w "$HOME"/work \
         hedaz:rust_dev
 }
 
 help() 
 {
-    echo "dsd"
+    echo -e "help"
 }
 
 while [ $# -gt 0 ]; do
