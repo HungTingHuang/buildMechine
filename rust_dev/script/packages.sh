@@ -36,11 +36,8 @@ install_c_toolchain() {
     apt-get install -y \
         build-essential \
         make \
-        gcc-13 \
-        g++-13
-
-    ln -sf /usr/bin/gcc-13 /usr/bin/gcc
-    ln -sf /usr/bin/g++-13 /usr/bin/g++
+        gcc \
+        g++
 }
 
 install_llvm_toolchain() {
@@ -58,6 +55,18 @@ install_kernel_deps() {
         flex \
         bison \
         bc \
+        gawk \
         libelf-dev \
+        libdw-dev \
         libssl-dev
+}
+
+install_system_deps() {
+    echo "Installing system dependencies..."
+    apt-get update && apt-get install -y \
+        vim git curl build-essential flex bison \
+        libssl-dev libelf-dev libncurses-dev \
+        qemu-system-x86 cpio busybox-static \
+        python3 python3-pip clang llvm lld \
+        bc pahole zstd
 }
