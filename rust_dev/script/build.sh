@@ -77,6 +77,9 @@ config_kernel() {
     # printk required for pr_info! and all Rust print macros
     scripts/config --enable CONFIG_PRINTK
 
+    # Network
+    scripts/config --enable CONFIG_NET
+
     # Rust the master switch
     scripts/config --enable CONFIG_RUST
 
