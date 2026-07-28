@@ -8,8 +8,8 @@ build_image() {
 
 run() {
     docker run -it \
-        -v "$HOME"/workspace:"$HOME"/workspace \
-        -w "$HOME"/workspace \
+        -v "$HOME":"$HOME" \
+        -w "$HOME" \
         hedaz:rust_dev
 }
 
