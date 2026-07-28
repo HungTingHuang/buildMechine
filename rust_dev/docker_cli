@@ -8,6 +8,7 @@ build_image() {
 
 run() {
     docker run -it \
+	--user root \
         -v "$HOME":"$HOME" \
         -w "$HOME" \
         hedaz:rust_dev
