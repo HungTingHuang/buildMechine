@@ -8,6 +8,7 @@ build_image() {
 
 run() {
     docker run -it \
+	-u $(id -u):$(id -g) \
         -v "$HOME":"$HOME" \
         -w "$HOME" \
         hedaz:rust_dev
