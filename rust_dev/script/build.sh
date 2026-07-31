@@ -78,6 +78,7 @@ config_kernel() {
     scripts/config --enable CONFIG_PRINTK
 
     # Network
+    scripts/config --enable CONFIG_INET
     scripts/config --enable CONFIG_NET
 
     # Rust the master switch
