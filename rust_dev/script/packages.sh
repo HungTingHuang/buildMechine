@@ -67,6 +67,6 @@ install_system_deps() {
         vim git curl build-essential flex bison \
         libssl-dev libelf-dev libncurses-dev \
         qemu-system-x86 cpio busybox-static \
-        python3 python3-pip clang llvm lld \
-        bc pahole zstd
+        python3 python3-pip clang clang-format \
+	llvm lld bc pahole zstd
 }
