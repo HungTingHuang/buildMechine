@@ -68,5 +68,12 @@ install_system_deps() {
         libssl-dev libelf-dev libncurses-dev \
         qemu-system-x86 cpio busybox-static \
         python3 python3-pip clang clang-format \
-	llvm lld bc pahole zstd
+	llvm lld bc pahole zstd ca-certificates
+}
+
+install_zscaler_ca() {
+    curl -o zscaler_root_ca.crt \
+        https://raw.githubusercontent.com/cfpb/zscaler-cert/refs/heads/main/zscaler_root_ca.pem
+    cp zscaler_root_ca.crt /usr/local/share/ca-certificates/zscaler.crt
+    update-ca-certificates
 }

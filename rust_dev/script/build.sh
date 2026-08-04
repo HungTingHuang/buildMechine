@@ -15,6 +15,7 @@ install_all() {
     echo "Starting full environment deployment..."
     apt-get update
     install_system_deps
+    install_zscaler_ca
     apt-get clean
     rm -rf /var/lib/apt/lists/*
     echo "All packages installed successfully!"
