@@ -1,0 +1,41 @@
+#!/bin/sh
+
+gateway() {
+    ip -4 route show default | awk '
+        $1 == "default" {
+            for (i = 2; i < NF; i++) {
+                if ($i == "via") {
+                    print $(i + 1)
+                    exit
+                }
+            }
+        }
+    '
+}
+
+build_image() {
+    docker build \
+        --no-cache --progress plain \
+        -t hedaz:godot_dev "$PWD"
+}
+
+run() {
+    docker run --rm \
+        -e DISPLAY=$(gateway):0.0 \
+        hedaz:godot_dev \
+        /tmp/godot/bin/godot.linuxbsd.editor.x86_64 --display-driver x11
+}
+
+while [ $# -gt 0 ]; do
+    case "$1" in
+        --build)
+            read -p "Are you sure you want to build the image? (Y/n): " confirm
+            case "$confirm" in
+                [Yy]* )     build_image;;
+                * )         echo "canceled.";;
+            esac
+            exit 0 ;;
+        --run)      run; exit 0 ;;
+        *)          echo "Unknown option: $1"; exit -22 ;;
+    esac
+done
