@@ -8,8 +8,9 @@ build_image() {
 
 run() {
     docker run -it \
-        -v "$HOME"/workspace:"$HOME"/workspace \
-        -w "$HOME"/workspace \
+	--user root \
+        -v "$HOME":"$HOME" \
+        -w "$HOME" \
         hedaz:rust_dev
 }
 
@@ -21,7 +22,13 @@ help()
 while [ $# -gt 0 ]; do
     case "$1" in
         --help)     help; exit 0 ;;
-        --build)    build_image; exit 0;;
+        --build)
+            read -p "Are you sure you want to build the image? (Y/n): " confirm
+            case "$confirm" in
+                [Yy]* )     build_image;;
+                * )         echo "canceled.";;
+            esac
+            exit 0 ;;
         --run)      run; exit 0 ;;
         *)          echo "Unknown option: $1"; exit -22 ;;
     esac
